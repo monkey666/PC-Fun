@@ -2,32 +2,51 @@ Opt("GuionEventMode", 1)
 #include <ButtonConstants.au3>
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
+#include<string.au3>
 
-$fBigFile=False
-$fOrdner=False
-#Region ### START Koda GUI section ### Form=
+$fBigFile = False
+$fOrdner = False
+#region ### START Koda GUI section ### Form=
 $Form1 = GUICreate("PC Fun", 248, 100, 447, 278)
 GUISetOnEvent(-3, "__Exit")
 $Button1 = GUICtrlCreateButton("Ordner erstellen", 8, 16, 99, 65)
-GUICtrlSetBKColor(-1, "0xFF0000")
+GUICtrlSetBkColor(-1, "0xFF0000")
 GUICtrlSetOnEvent(-1, "__ToggleOrdner")
 $Button2 = GUICtrlCreateButton("Big File", 128, 16, 99, 65)
-GUICtrlSetBKColor(-1, "0xFF0000")
+GUICtrlSetBkColor(-1, "0xFF0000")
 GUICtrlSetOnEvent(-1, "__ToggleBigFile")
 GUISetState(@SW_SHOW)
-#EndRegion ### END Koda GUI section ###
+#endregion ### END Koda GUI section ###
+$sBigFileString="a"
+$sBigFileString=_StringRepeat($sBigFileString, 1048576)
 
-While 1
 
+
+While Sleep(50)
+	If $fBigFile Then ConsoleWrite("BigFile=1"&@CRLF)
+	If $fOrdner Then ConsoleWrite("Ordmer=1"&@CRLF)
 WEnd
 
 
-func __Exit()
+Func __Exit()
 	Exit
-EndFunc
+EndFunc   ;==>__Exit
 
 Func __ToggleBigFile()
-EndFunc
+	$fBigFile = Not $fBigFile
+	If $fBigFile Then
+		GUICtrlSetBkColor(@GUI_CtrlId, 0x00FF00)
+	Else
+		GUICtrlSetBkColor(@GUI_CtrlId, 0xFF0000)
+	EndIf
+
+EndFunc   ;==>__ToggleBigFile
 
 Func __ToggleOrdner()
-EndFunc
+	$fOrdner = Not $fOrdner
+	If $fOrdner Then
+		GUICtrlSetBkColor(@GUI_CtrlId, 0x00FF00)
+	Else
+		GUICtrlSetBkColor(@GUI_CtrlId, 0xFF0000)
+	EndIf
+EndFunc   ;==>__ToggleOrdner
