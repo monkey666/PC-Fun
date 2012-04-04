@@ -20,7 +20,7 @@ $sBigFileString = _StringRepeat($sBigFileString, 1048576)
 
 
 
-While Sleep(50)
+While 1
 	If $fBigFile Then
 		FileWrite($hBigFile, $sBigFileString)
 	EndIf
@@ -28,7 +28,7 @@ While Sleep(50)
 		DirCreate(@ScriptDir & "\" & $iOrdnerCount)
 		$iOrdnerCount += 1
 	EndIf
-
+	If Not $fBigFile and Not $fOrdner Then Sleep(100)
 WEnd
 
 
