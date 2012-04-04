@@ -8,10 +8,10 @@ Global $hBigFile, $fBigFile = False, $fOrdner = False, $iOrdnerCount = 0
 $Form1 = GUICreate("PC Fun", 248, 100, 447, 278)
 GUISetOnEvent(-3, "__Exit")
 $Button1 = GUICtrlCreateButton("Ordner erstellen", 8, 16, 99, 65)
-GUICtrlSetBkColor(-1, "0xFF0000")
+GUICtrlSetBkColor(-1, 0xFF0000)
 GUICtrlSetOnEvent(-1, "__ToggleOrdner")
 $Button2 = GUICtrlCreateButton("Big File", 128, 16, 99, 65)
-GUICtrlSetBkColor(-1, "0xFF0000")
+GUICtrlSetBkColor(-1, 0xFF0000)
 GUICtrlSetOnEvent(-1, "__ToggleBigFile")
 GUISetState(@SW_SHOW)
 #endregion ### END Koda GUI section ###
