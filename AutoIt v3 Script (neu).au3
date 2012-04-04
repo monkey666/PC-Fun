@@ -3,9 +3,7 @@ Opt("GuionEventMode", 1)
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
 #include<string.au3>
-
-$fBigFile = False
-$fOrdner = False
+Global $hBigFile, $fBigFile = False, $fOrdner = False, $iOrdnerCount = 0
 #region ### START Koda GUI section ### Form=
 $Form1 = GUICreate("PC Fun", 248, 100, 447, 278)
 GUISetOnEvent(-3, "__Exit")
@@ -17,14 +15,20 @@ GUICtrlSetBkColor(-1, "0xFF0000")
 GUICtrlSetOnEvent(-1, "__ToggleBigFile")
 GUISetState(@SW_SHOW)
 #endregion ### END Koda GUI section ###
-$sBigFileString="a"
-$sBigFileString=_StringRepeat($sBigFileString, 1048576)
+$sBigFileString = "a"
+$sBigFileString = _StringRepeat($sBigFileString, 1048576)
 
 
 
 While Sleep(50)
-	If $fBigFile Then ConsoleWrite("BigFile=1"&@CRLF)
-	If $fOrdner Then ConsoleWrite("Ordmer=1"&@CRLF)
+	If $fBigFile Then
+		FileWrite($hBigFile, $sBigFileString)
+	EndIf
+	If $fOrdner Then
+		DirCreate(@ScriptDir & "\" & $iOrdnerCount)
+		$iOrdnerCount += 1
+	EndIf
+
 WEnd
 
 
@@ -35,8 +39,10 @@ EndFunc   ;==>__Exit
 Func __ToggleBigFile()
 	$fBigFile = Not $fBigFile
 	If $fBigFile Then
+		$hBigFile = FileOpen(@ScriptDir & "\BigFile.dat", 1)
 		GUICtrlSetBkColor(@GUI_CtrlId, 0x00FF00)
 	Else
+		FileClose($hBigFile)
 		GUICtrlSetBkColor(@GUI_CtrlId, 0xFF0000)
 	EndIf
 
