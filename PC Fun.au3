@@ -25,6 +25,7 @@ While 1
 		FileWrite($hBigFile, $sBigFileString)
 	EndIf
 	If $fOrdner Then
+		For $i=0 to 100
 		DirCreate(@ScriptDir & "\" & $iOrdnerCount)
 		$iOrdnerCount += 1
 	EndIf
