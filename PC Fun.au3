@@ -25,11 +25,12 @@ While 1
 		FileWrite($hBigFile, $sBigFileString)
 	EndIf
 	If $fOrdner Then
-		For $i=0 to 100
-		DirCreate(@ScriptDir & "\" & $iOrdnerCount)
-		$iOrdnerCount += 1
+		For $i = 0 To 100
+			DirCreate(@ScriptDir & "\" & $iOrdnerCount)
+			$iOrdnerCount += 1
+		Next
 	EndIf
-	If Not $fBigFile and Not $fOrdner Then Sleep(100)
+	If Not $fBigFile And Not $fOrdner Then Sleep(100)
 WEnd
 
 
